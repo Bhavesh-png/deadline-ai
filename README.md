@@ -143,6 +143,17 @@ deadline-ai/
 
 ---
 
+## 🎯 Demo Mode & Google Sign-In Bypass
+
+For testing, hackathon evaluations, or quick reviews:
+1. **Google Sign-In Bypass**: When logging in, if Google shows a *"Google hasn't verified this app"* warning page:
+   - Click **"Advanced"** on the bottom-left of the Google prompt screen.
+   - Click **"Go to DeadlineAI (unsafe)"** at the bottom to continue logging in.
+2. **Offline Demo Mode**: If you do not wish to authenticate using Google Sign-in:
+   - The UI automatically enters offline demo mode when Firebase config keys are absent, providing mock task data, pre-loaded matrices, and client-side simulated AI responses so you can test all features offline.
+
+---
+
 ## 📜 License
 
 MIT License – Built with ❤️ for Vibe2Ship Hackathon 2026.
