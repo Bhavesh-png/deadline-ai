@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User profiles rules: Only document owner can read/write
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+    }
+
+    // Tasks rules: Users can only create, view, update or delete their own tasks
+    match /tasks/{taskId} {
+      allow create: if isAuthenticated() && 
+        ((request.resource.data.userId == request.auth.uid) || (request.resource.data.user_id == request.auth.uid));
+      allow read, update, delete: if isAuthenticated() && 
+        ((resource.data.userId == request.auth.uid) || (resource.data.user_id == request.auth.uid));
+    }
+
+    // Analytics rules: Users can only read/write their own weekly metrics
+    match /analytics/{userId} {
+      allow read, write: if isOwner(userId);
+      
+      match /weekly/{weekId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+  }
+}

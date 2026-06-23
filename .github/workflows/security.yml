@@ -1,0 +1,45 @@
+name: DevSecOps SAST Scanning Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 0' # Weekly run on Sunday
+
+jobs:
+  sast-backend:
+    name: Backend Security Scan (Bandit)
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install Bandit
+      run: pip install bandit
+
+    - name: Run Bandit Scan
+      run: bandit -r backend/app/ -ll -ii
+
+  sast-dependencies:
+    name: Frontend Dependency Security Audit
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Run NPM Dependency Audit
+      run: |
+        cd frontend
+        npm audit --audit-level=high || true

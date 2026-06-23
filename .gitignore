@@ -1,0 +1,26 @@
+node_modules/
+dist/
+.env
+*.local
+.DS_Store
+*.log
+
+# Backend
+__pycache__/
+*.py[cod]
+*.pyc
+venv/
+.venv/
+*.egg-info/
+serviceAccountKey.json
+*.json.bak
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build
+build/
+.firebase/
