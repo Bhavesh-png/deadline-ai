@@ -98,7 +98,7 @@ const MOCK_RESPONSES = {
     complexity: 8,
     recommendation: 'Start immediately. Break into daily 4-hour sessions for optimal productivity.',
   }),
-  schedule: (task, subtasks, deadline) => {
+  schedule: (task, subtasks) => {
     const days = [];
     const now = new Date();
     subtasks.forEach((st, i) => {
@@ -300,7 +300,7 @@ Respond with ONLY valid JSON array (no markdown):
     const text = result.response.text().trim();
     const cleaned = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     return JSON.parse(cleaned);
-  } catch (err) {
+  } catch {
     return MOCK_RESPONSES.schedule(taskTitle, subtasks, deadline);
   }
 }
@@ -400,7 +400,7 @@ Respond with ONLY valid JSON:
     const text = result.response.text().trim();
     const cleaned = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     return JSON.parse(cleaned);
-  } catch (err) {
+  } catch {
     return {
       message: `No worries! I've rescheduled your task for optimal completion.`,
       newSchedule: [],
@@ -467,7 +467,7 @@ Pending tasks: ${pendingTasks}
     const text = result.response.text().trim();
     const cleaned = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     return JSON.parse(cleaned);
-  } catch (err) {
+  } catch {
     return { score: 75, insights: [], weeklyTrend: 'stable', recommendation: 'Keep going!' };
   }
 }
@@ -503,7 +503,7 @@ User: ${message}`;
         const data = await res.json();
         return data.response;
       }
-    } catch (err) {
+    } catch {
       // ignore, fall through
     }
     await new Promise(r => setTimeout(r, 1000));
@@ -524,7 +524,7 @@ Current user context: ${JSON.stringify(context)}`;
   try {
     const result = await m.generateContent(`${systemPrompt}\n\nUser: ${message}`);
     return result.response.text().trim();
-  } catch (err) {
+  } catch {
     return "I'm here to help you stay on track! What would you like to work on today?";
   }
 }

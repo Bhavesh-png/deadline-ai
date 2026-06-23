@@ -1,6 +1,5 @@
 # FastAPI Firebase Auth Verification Service
 from fastapi import Header, HTTPException, status
-import os
 from app.services.firebase_service import FIREBASE_ENABLED
 
 if FIREBASE_ENABLED:

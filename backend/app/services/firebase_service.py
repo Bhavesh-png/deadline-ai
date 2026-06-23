@@ -1,6 +1,5 @@
 # Firebase Admin SDK Service
 import os
-import json
 from datetime import datetime
 
 try:

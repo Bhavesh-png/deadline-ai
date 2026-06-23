@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends, status, Header
+from fastapi import APIRouter, HTTPException, Depends, Header
 from typing import Optional
 from app.models.schemas import AnalyzeTaskRequest, GenerateScheduleRequest, RescheduleRequest, ChatRequest
 from app.agents.ai_agents import (

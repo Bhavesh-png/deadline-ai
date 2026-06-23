@@ -7,7 +7,7 @@ import {
   GripVertical,
 } from 'lucide-react';
 import { useTasks } from '../context/TaskContext';
-import { differenceInDays, format } from 'date-fns';
+import { differenceInDays } from 'date-fns';
 import CreateTaskModal from '../components/CreateTaskModal';
 import { IllustrationTasks, IllustrationEmpty } from '../components/Illustrations';
 import toast from 'react-hot-toast';

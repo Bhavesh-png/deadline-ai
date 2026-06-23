@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   User, Bell, Moon, Sun, Shield, Globe, Zap,
-  Brain, ChevronRight, Check, Key, Settings as SettingsIcon,
+  Brain, Key, Settings as SettingsIcon,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';

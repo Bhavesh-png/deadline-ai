@@ -2,14 +2,14 @@
 import os
 import time
 from collections import defaultdict
-from fastapi import FastAPI, HTTPException, Depends, Request, status
+from fastapi import FastAPI, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.base import BaseHTTPMiddleware
 from dotenv import load_dotenv
 
 load_dotenv()
 
-from app.routes import tasks, ai, analytics
+from app.routes import tasks, ai, analytics  # noqa: E402
 
 app = FastAPI(
     title="DeadlineAI API",
