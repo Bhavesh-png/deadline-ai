@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence, useInView, useMotionValue, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
   Brain, Zap, Target, Calendar, BarChart3, Shield,
-  ArrowRight, Star, CheckCircle, Users, TrendingUp, Clock,
+  ArrowRight, Star, CheckCircle,
   ExternalLink, Globe, Share2, Play
 } from 'lucide-react';
 

@@ -1,20 +1,29 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Brain } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-function Particle({ style }) {
+function Particle({ width, height, left, top, duration, delay }) {
   return (
     <motion.div
       className="absolute rounded-full"
-      style={{ background: 'rgba(99,102,241,0.3)', ...style }}
+      style={{ background: 'rgba(99,102,241,0.3)', width, height, left, top }}
       animate={{ y: [0, -30, 0], opacity: [0.3, 0.8, 0.3] }}
-      transition={{ duration: 3 + Math.random() * 3, repeat: Infinity, delay: Math.random() * 2 }}
+      transition={{ duration, repeat: Infinity, delay }}
     />
   );
 }
+
+const INITIAL_PARTICLES = Array.from({ length: 20 }, (_, i) => ({
+  id: i,
+  width: Math.random() * 6 + 2,
+  height: Math.random() * 6 + 2,
+  left: `${Math.random() * 100}%`,
+  top: `${Math.random() * 100}%`,
+  duration: 3 + Math.random() * 3,
+  delay: Math.random() * 2,
+}));
 
 export default function LoginPage() {
   const { signInWithGoogle, user } = useAuth();
@@ -30,26 +39,21 @@ export default function LoginPage() {
     try {
       await signInWithGoogle();
       toast.success('Welcome to DeadlineAI! 🚀');
-    } catch (err) {
+    } catch {
       toast.error('Sign-in failed. Please try again.');
     } finally {
       setLoading(false);
     }
   };
 
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    width: Math.random() * 6 + 2,
-    height: Math.random() * 6 + 2,
-    left: `${Math.random() * 100}%`,
-    top: `${Math.random() * 100}%`,
-  }));
+  const particles = INITIAL_PARTICLES;
 
   return (
     <div className="min-h-screen flex items-center justify-center relative overflow-hidden"
       style={{ background: 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0c1445 100%)' }}>
 
       {/* Particles */}
-      {particles.map((p, i) => <Particle key={i} style={p} />)}
+      {particles.map((p) => <Particle key={p.id} {...p} />)}
 
       {/* Background blobs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"

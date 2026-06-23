@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // Theme Context – Dark/Light mode
 import { createContext, useContext, useState, useEffect } from 'react';
 

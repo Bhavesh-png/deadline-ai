@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // @refresh reset
 // Task Context – Global task state management
 import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
@@ -87,15 +88,22 @@ export function TaskProvider({ children }) {
 
   useEffect(() => {
     if (!user || user.uid === 'demo-user-123') {
-      setTasks(DEMO_TASKS);
-      return;
+      const timer = setTimeout(() => {
+        setTasks(DEMO_TASKS);
+      }, 0);
+      return () => clearTimeout(timer);
     }
-    setLoading(true);
+    const timer = setTimeout(() => {
+      setLoading(true);
+    }, 0);
     const unsub = subscribeToTasks(user.uid, (fetchedTasks) => {
       setTasks(fetchedTasks.length > 0 ? fetchedTasks : DEMO_TASKS);
       setLoading(false);
     });
-    return () => unsub();
+    return () => {
+      clearTimeout(timer);
+      unsub();
+    };
   }, [user]);
 
   const addTask = useCallback(async (userInput) => {

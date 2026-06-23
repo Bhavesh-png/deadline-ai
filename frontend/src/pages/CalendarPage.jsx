@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Calendar as CalIcon, Circle, Plus } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar as CalIcon, Circle } from 'lucide-react';
 import { useTasks } from '../context/TaskContext';
-import { IllustrationCalendar, IllustrationEmpty } from '../components/Illustrations';
+import { IllustrationCalendar } from '../components/Illustrations';
 import {
   format, startOfMonth, endOfMonth, eachDayOfInterval,
   startOfWeek, endOfWeek, isSameMonth, isSameDay, isToday,

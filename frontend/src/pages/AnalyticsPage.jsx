@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
-  BarChart, Bar, LineChart, Line, AreaChart, Area,
+  BarChart, Bar, AreaChart, Area,
   XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell,
 } from 'recharts';
 import { TrendingUp, CheckCircle2, Target, Zap, Brain, Trophy } from 'lucide-react';
 import { useTasks } from '../context/TaskContext';
 import { getProductivityInsights } from '../services/geminiService';
 import { format, subDays } from 'date-fns';
-import { IllustrationAnalytics, IllustrationEmpty } from '../components/Illustrations';
+import { IllustrationAnalytics } from '../components/Illustrations';
 
 // Generate last 7 days labels
 const DAYS = Array.from({ length: 7 }, (_, i) => ({
@@ -16,18 +16,13 @@ const DAYS = Array.from({ length: 7 }, (_, i) => ({
   date: format(subDays(new Date(), 6 - i), 'yyyy-MM-dd'),
 }));
 
-const MOCK_WEEKLY = DAYS.map((d, i) => ({
+const MOCK_WEEKLY = DAYS.map((d) => ({
   day: d.label,
   completed: Math.floor(Math.random() * 5) + 1,
   scheduled: Math.floor(Math.random() * 3) + 3,
   score: Math.floor(70 + Math.random() * 25),
 }));
 
-const MOCK_PRIORITY_DATA = [
-  { name: 'High', value: 3, color: '#ef4444' },
-  { name: 'Medium', value: 5, color: '#f59e0b' },
-  { name: 'Low', value: 4, color: '#10b981' },
-];
 
 function MetricCard({ icon: Icon, label, value, color, change, delay }) {
   return (

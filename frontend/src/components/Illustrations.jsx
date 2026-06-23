@@ -262,7 +262,7 @@ export function IllustrationSettings({ className = '' }) {
 }
 
 /* Empty state – No Tasks */
-export function IllustrationEmpty({ className = '', message = 'Nothing here yet' }) {
+export function IllustrationEmpty({ className = '' }) {
   return (
     <svg viewBox="0 0 200 160" fill="none" xmlns="http://www.w3.org/2000/svg" className={className} aria-hidden="true">
       {/* Box */}

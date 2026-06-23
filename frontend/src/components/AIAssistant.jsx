@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, Loader2, Bot, User, Sparkles } from 'lucide-react';
+import { X, Send, Loader2, Bot, User, Sparkles } from 'lucide-react';
 import { chatWithAI } from '../services/geminiService';
 import { useAuth } from '../context/AuthContext';
 import { useTasks } from '../context/TaskContext';

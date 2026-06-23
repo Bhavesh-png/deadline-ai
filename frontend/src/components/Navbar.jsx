@@ -14,7 +14,7 @@ const NOTIFICATIONS = [
 
 export default function Navbar({ mobileMenuButton }) {
   const { isDark, toggleTheme } = useTheme();
-  const { user, userProfile, logout } = useAuth();
+  const { user, logout } = useAuth();
   const { stats } = useTasks();
   const [showNotifs, setShowNotifs] = useState(false);
   const [showProfile, setShowProfile] = useState(false);

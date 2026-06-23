@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 // @refresh reset
 // Auth Context – Firebase Authentication
 import { createContext, useContext, useState, useEffect } from 'react';

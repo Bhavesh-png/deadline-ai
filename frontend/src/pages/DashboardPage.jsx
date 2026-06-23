@@ -1,5 +1,5 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   CheckCircle2, Clock, AlertTriangle, TrendingUp, Flame,
   Zap, Trophy, Brain, Calendar, ChevronRight, Target, Plus,
@@ -11,18 +11,6 @@ import { format, differenceInDays } from 'date-fns';
 import { IllustrationDashboard, IllustrationEmpty } from '../components/Illustrations';
 import { Link } from 'react-router-dom';
 
-/* ─── Skeleton Loader ──────────────────────────────────────────────────────── */
-function SkeletonCard() {
-  return (
-    <div className="p-5 rounded-2xl animate-pulse" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)' }}>
-      <div className="flex justify-between mb-4">
-        <div className="w-10 h-10 rounded-xl bg-slate-700/50"/>
-        <div className="w-12 h-8 rounded-lg bg-slate-700/50"/>
-      </div>
-      <div className="h-3 w-20 rounded bg-slate-700/50"/>
-    </div>
-  );
-}
 
 /* ─── Stat Card ─────────────────────────────────────────────────────────────── */
 function StatCard({ icon: Icon, label, value, color, delay, subtext }) {

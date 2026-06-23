@@ -10,7 +10,7 @@ export default function CreateTaskModal({ isOpen, onClose }) {
   const [step, setStep] = useState(0);
   const [input, setInput] = useState('');
   const [analysis, setAnalysis] = useState(null);
-  const { addTask, analyzing } = useTasks();
+  const { addTask } = useTasks();
 
   const handleAnalyze = async () => {
     if (!input.trim()) return;
@@ -19,7 +19,7 @@ export default function CreateTaskModal({ isOpen, onClose }) {
       const result = await addTask(input);
       setAnalysis(result);
       setStep(2);
-    } catch (err) {
+    } catch {
       toast.error('Analysis failed. Please try again.');
       setStep(0);
     }

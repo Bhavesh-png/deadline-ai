@@ -1,10 +1,11 @@
+/* eslint-disable react-refresh/only-export-components */
 // @refresh reset
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, CheckSquare, Calendar, BarChart3,
-  Settings, ChevronLeft, ChevronRight, Zap, Brain,
+  Settings, ChevronLeft, Zap,
   Trophy, Flame, X, Menu,
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
@@ -27,7 +28,7 @@ export function useSidebarState() {
   const toggleCollapsed = useCallback(() => {
     setCollapsed(c => {
       const next = !c;
-      try { localStorage.setItem('sidebar-collapsed', String(next)); } catch {}
+      try { localStorage.setItem('sidebar-collapsed', String(next)); } catch { /* ignore */ }
       return next;
     });
   }, []);
